@@ -33,6 +33,8 @@ module HomesickCastleAgent
     # a Vagrant path bug: https://github.com/mitchellh/vagrant/issues/1013
     cmd_prefix = 'PATH=$PATH:/opt/vagrant_ruby/bin'
 
+    # command = 'ssh-add -l & false' # really useful for debugging
+
     remote_command = "ssh #{ssh_options} #{new_resource.user}@localhost '#{cmd_prefix} #{command}'"
     execute remote_command 
   end

@@ -68,7 +68,7 @@ have the error, until a full rebuild occurs, perhaps done by:
 ## Usage
 
 Instead of including `recipe[homesick::data_bag]`, simply include
-`recipe[homesick_agent::data_bag_agent]` Assuming everything else works, you
+`recipe[homesick_agent::data_bag]` Assuming everything else works, you
 should now be able to use homesick with repositories that require SSH agent
 forwarding from your Vagrant workstation.
 
@@ -110,6 +110,11 @@ shell), then fails with the following:
   error  Could not pull dotfiles, expected /home/alex/.homesick/repos/dotfiles/home exist and contain dotfiles
 ```
 
+FYI although the failure was in the call to `homesick clone`, it seems to
+return 0 status code anyways, and chef doesn't fail until the subsequent call
+to `homesick pull`. I've filed the following bug about this:
+https://github.com/technicalpickles/homesick/issues/25
+
 Restart shef (*mandatory*), and try again while overriding HomesickCastle#run
 with a debug message: 
 ```ruby
@@ -135,7 +140,7 @@ method does nothing except logs to console:
 If this worked, hopefully so will the following:
 ```ruby
 chef >          recipe    #enter recipe mode
-chef:recipe >   include_recipe("homesick_agent::data_bag_agent")     # loads up the recipe
+chef:recipe >   include_recipe("homesick_agent::data_bag")     # loads up the recipe
 chef:recipe >   run_chef 
 ```
 
