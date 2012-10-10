@@ -24,7 +24,7 @@ module HomesickCastleAgent
   def run_with_agent(command)
     
     #enable ssh agent forwarding
-    ssh_optinos = "-A"
+    ssh_options = "-A"
 
     # Avoid 'Host key verification failed' error related to not having localhost in /root/.ssh/known_hosts
     ssh_options << " -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
