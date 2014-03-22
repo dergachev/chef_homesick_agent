@@ -57,7 +57,7 @@ will need to use Resolve::getaddress unless an ip address is explicitly
 provided. That means without an internet connection, you're likely to get the error
 `FATAL: Resolv::ResolvError: no address for github.com`.
 
-Failing to use `recipe[ssh_known_hosts will result in a `Host key verification failed`
+Failing to use `recipe[ssh_known_hosts]` will result in a `Host key verification failed`
 error when homesick tries to connect to the remote git repository.  Note that
 this error is hard to debug interactively, as ssh will prompt you to accept
 the Host key and store in ~/.ssh/known_hosts. Subsequent chef runs will not
